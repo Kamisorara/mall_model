@@ -43,5 +43,7 @@ public class Commodities {
 
     //附照片4
     private String photo4;
+    //卖家id
+    private Long sellerId;
 
 }

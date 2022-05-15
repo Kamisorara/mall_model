@@ -25,11 +25,10 @@ public class Seller {
     //卖家店铺名称
     private String sellerName;
     //描述分
-    private Double sellerMarl1;
+    private Double sellerMark1;
     //服务分
     private Double sellerMark2;
     //物流分
     private Double sellerMark3;
-
 }
 
