@@ -14,8 +14,6 @@ public class SellerServiceImpl implements SellerService {
 
     @Override
     public Seller selectSellerById(Long id) {
-        LambdaQueryWrapper<Seller> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(Seller::getId, id);
-        return sellerMapper.selectOne(queryWrapper);
+        return sellerMapper.selectById(id);
     }
 }

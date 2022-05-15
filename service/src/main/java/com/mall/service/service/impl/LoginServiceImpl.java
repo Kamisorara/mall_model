@@ -50,7 +50,6 @@ public class LoginServiceImpl implements LoginService {
         //把完整的用户信息存入redis
         redisCache.setCacheObject("login:" + userid, loginUser);
         return new ResponseResult(200, "登录成功", map);
-
     }
 
     //退出

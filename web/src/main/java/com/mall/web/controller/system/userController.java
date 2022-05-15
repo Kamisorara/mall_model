@@ -92,6 +92,18 @@ public class userController {
         return loginService.logout();
     }
 
+    //获取用户个人信息
+    @RequestMapping(value = "/user-info-detail", method = RequestMethod.GET)
+    public ResponseResult getUserInfoDetail(HttpServletRequest request) throws Exception {
+        //获取token
+        String token = request.getHeader("token");
+        Claims claims = JwtUtil.parseJWT(token);
+        String id = claims.get("sub").toString();
+        long userId = Long.parseLong(id);
+        User userInfo = userInfoService.getUserInfo(userId);
+        return new ResponseResult(200, "用户信息获取成功", userInfo);
+    }
+
     //验证用户登录情况
     @RequestMapping(value = "/user-info", method = RequestMethod.GET)
     public ResponseResult getUserInfo(HttpServletRequest request) throws Exception {
@@ -106,6 +118,6 @@ public class userController {
         List<Object> list = new ArrayList<>();
         list.add(userId);
         list.add(userName);
-        return new ResponseResult(200, "获取成功", list);
+        return new ResponseResult(200, "用户登录状态获取成功", list);
     }
 }

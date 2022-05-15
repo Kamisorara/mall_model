@@ -3,5 +3,10 @@
 <mapper namespace="com.mall.dao.mapper.SellerMapper">
 
 
-
+    <select id="selectById" resultType="com.mall.entity.entity.shop.Seller">
+        SELECT *
+        FROM `shop_commodities` sc
+                 LEFT JOIN shop_seller ss ON sc.seller_id = ss.id
+        WHERE sc.id = #{id};
+    </select>
 </mapper>
