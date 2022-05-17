@@ -38,8 +38,9 @@ public class userController {
     private UserMapper userMapper;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseResult login(@RequestParam("username") String username,
-                                @RequestParam("password") String password) {
+    public ResponseResult login(HttpServletRequest request) {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
         User user = new User();
         user.setUserName(username);
         user.setPassword(password);
