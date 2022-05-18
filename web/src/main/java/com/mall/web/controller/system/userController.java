@@ -3,18 +3,18 @@ package com.mall.web.controller.system;
 
 import com.mall.dao.mapper.UserMapper;
 import com.mall.entity.entity.User;
+import com.mall.entity.entity.UserDetail;
 import com.mall.entity.entity.resp.ResponseResult;
 import com.mall.entity.utils.JwtUtil;
 import com.mall.service.service.LoginService;
+import com.mall.service.service.UpdateUserDetailService;
 import com.mall.service.service.UserInfoService;
 import com.mall.service.service.VerifyService;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -36,7 +36,12 @@ public class userController {
     private VerifyService verifyService;
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private UpdateUserDetailService updateUserDetailService;
 
+    /**
+     * 登录接口
+     */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseResult login(HttpServletRequest request) {
         String username = request.getParameter("username");
@@ -48,7 +53,9 @@ public class userController {
         return loginService.login(user);
     }
 
-    //注册接口
+    /**
+     * 注册接口
+     */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseResult register(@RequestParam("username") String username,
                                    @RequestParam("password") String password,
@@ -75,7 +82,12 @@ public class userController {
         }
     }
 
-    //发送验证码
+    /**
+     * 发送验证码
+     *
+     * @param email
+     * @return
+     */
     @RequestMapping(value = "/verify-code", method = RequestMethod.POST)
     public ResponseResult verifyCode(@RequestParam("email") String email) {
         Map<String, Object> map = new HashMap<>();
@@ -87,13 +99,17 @@ public class userController {
         }
     }
 
-    //退出
+    /**
+     * 退出
+     */
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public ResponseResult logout() {
         return loginService.logout();
     }
 
-    //获取用户个人信息
+    /**
+     * 获取用户个人信息（这个接口不建议使用，后期会考虑删除）
+     */
     @RequestMapping(value = "/user-info-detail", method = RequestMethod.GET)
     public ResponseResult getUserInfoDetail(HttpServletRequest request) throws Exception {
         //获取token
@@ -105,7 +121,31 @@ public class userController {
         return new ResponseResult(200, "用户信息获取成功", userInfo);
     }
 
-    //验证用户登录情况
+    /**
+     * 获取用户详细信息
+     */
+    @RequestMapping(value = "/user-info-detail-get", method = RequestMethod.POST)
+    public ResponseResult getUserDetailInfo(@RequestParam("userId") Long userId) {
+        UserDetail userDetail = updateUserDetailService.selectUserDetailInfo(userId);
+        return new ResponseResult(200, "获取成功", userDetail);
+    }
+
+    /**
+     * 更新用户基本信息
+     */
+    @RequestMapping(value = "/userDetail-post", method = RequestMethod.POST)
+    public ResponseResult updateUser(@RequestBody UserDetail userDetail) {
+        boolean success = updateUserDetailService.updateUserDetailMessage(userDetail);
+        if (success) {
+            return new ResponseResult(200, "修改成功");
+        } else {
+            return new ResponseResult(400, "修改失败");
+        }
+    }
+
+    /**
+     * 验证用户登录情况
+     */
     @RequestMapping(value = "/user-info", method = RequestMethod.GET)
     public ResponseResult getUserInfo(HttpServletRequest request) throws Exception {
         //获取token
