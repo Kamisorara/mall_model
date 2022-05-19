@@ -1,6 +1,5 @@
 package com.mall.service.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.mall.dao.mapper.SellerMapper;
 import com.mall.entity.entity.shop.Seller;
 import com.mall.service.service.SellerService;

@@ -46,4 +46,7 @@ public class Commodities {
     //卖家id
     private Long sellerId;
 
+    //商品类别
+    private String type;
+
 }
