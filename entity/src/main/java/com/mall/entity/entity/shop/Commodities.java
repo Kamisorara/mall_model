@@ -49,4 +49,6 @@ public class Commodities {
     //商品类别
     private String type;
 
+    //是否包邮(0不包邮,1包邮)
+    private int pinkage;
 }
