@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * (Seller)表实体类
+ * (shop_seller)表实体类
  *
  * @author Kamisora
  * @since 2022-05-15 13:19:29
