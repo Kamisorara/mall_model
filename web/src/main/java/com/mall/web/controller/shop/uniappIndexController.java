@@ -5,7 +5,6 @@ import com.mall.service.service.UniappClassificationService;
 import com.mall.service.service.UniappCommoditiesService;
 import com.mall.service.service.UniappRecommendedService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
