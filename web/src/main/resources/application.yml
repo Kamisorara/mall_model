@@ -30,3 +30,4 @@ mybatis-plus:
       # id生成策略 auto为数据库自增
       id-type: auto
   mapper-locations: classpath*:/mapper/**/*.xml
+

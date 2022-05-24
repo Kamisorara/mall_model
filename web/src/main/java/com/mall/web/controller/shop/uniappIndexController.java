@@ -1,6 +1,8 @@
 package com.mall.web.controller.shop;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.mall.entity.entity.resp.ResponseResult;
+import com.mall.entity.entity.shop.UniappCommodities;
 import com.mall.service.service.UniappClassificationService;
 import com.mall.service.service.UniappCommoditiesService;
 import com.mall.service.service.UniappRecommendedService;
@@ -8,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * uniapp商城首页接口
@@ -40,5 +44,14 @@ public class uniappIndexController {
     @RequestMapping(value = "/get-index-commodities", method = RequestMethod.GET)
     public ResponseResult getIndexCommodities() {
         return commoditiesService.selectAllCommodities();
+    }
+
+
+    //分页获取商品列表
+    @RequestMapping(value = "/getPageCommodities", method = RequestMethod.GET)
+    public ResponseResult getPageList(int pageNum, int pageSize) {
+        IPage<UniappCommodities> pageList = commoditiesService.getPageList(pageNum, pageSize);
+        return new ResponseResult(200, "获取成功", pageList);
+
     }
 }
