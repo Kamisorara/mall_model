@@ -50,7 +50,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 //对于登录接口允许匿名访问
-                .antMatchers("/user/login", "/user/register", "/shop/index/default-recommended", "/shop/index/classification", "/shop/index/notice-board", "/user/verify-code").permitAll()
+                .antMatchers("/user/login",
+                        "/user/register",
+                        "/shop/index/default-recommended",
+                        "/shop/index/classification",
+                        "/shop/index/notice-board",
+                        "/user/verify-code",
+                        "/uni-shop/index/**").permitAll()
                 //除了上面的接口都要进行权限认证
                 .anyRequest().authenticated();
         //把token校验过滤器添加到过滤器链中 （添加过滤器）
