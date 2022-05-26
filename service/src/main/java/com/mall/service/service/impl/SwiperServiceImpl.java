@@ -2,7 +2,6 @@ package com.mall.service.service.impl;
 
 import com.mall.dao.mapper.SwiperMapper;
 import com.mall.entity.entity.resp.ResponseResult;
-import com.mall.entity.entity.shop.Swiper;
 import com.mall.service.service.SwiperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
