@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mall.dao.mapper.UniappCommoditiesMapper">
+    <!--    获取所有商品列表-->
     <select id="selectAll" resultType="com.mall.entity.entity.shop.UniappCommodities">
         SELECT *
         FROM `shop_uniapp_commodities`;
 
+    </select>
+    <!--    根据id查询商品-->
+    <select id="selectCommodityById" resultType="com.mall.entity.entity.shop.UniappCommodities">
+        SELECT *
+        FROM `shop_uniapp_commodities`
+
+        WHERE id = #{id};
+    </select>
+    <!--    根据商品id获取销售商户信息-->
+    <select id="selectCommentDetailByCommodityId" resultType="com.mall.entity.entity.shop.UniappComment">
+        SELECT *
+        FROM `shop_uniapp_comment` suc
+                 LEFT JOIN shop_uniapp_commodities uc ON suc.commodity_id = uc.id
+        WHERE uc.id = #{id};
     </select>
 </mapper>
