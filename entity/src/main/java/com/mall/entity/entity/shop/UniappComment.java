@@ -33,6 +33,7 @@ public class UniappComment {
     private String picutre3;
     //用户评论对应商品id
     private Long commodityId;
-
+    //用户名
+    private String userName;
 }
 

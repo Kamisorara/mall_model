@@ -16,6 +16,6 @@ public class SwiperServiceImpl implements SwiperService {
     @Override
     public ResponseResult selectAll() {
         List<String> swipers = swiperMapper.selectAll();
-        return new ResponseResult(200, "获取成功", swipers);
+        return new ResponseResult(200, "获取首页轮播图成功!", swipers);
     }
 }

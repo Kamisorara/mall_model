@@ -55,7 +55,7 @@ public class uniappIndexController {
     @RequestMapping(value = "/getPageCommodities", method = RequestMethod.GET)
     public ResponseResult getPageList(int pageNum, int pageSize) {
         IPage<UniappCommodities> pageList = commoditiesService.getPageList(pageNum, pageSize);
-        return new ResponseResult(200, "获取成功", pageList);
+        return new ResponseResult(200, "分页获取商品获取成功", pageList);
     }
 
     //获取轮播图图片
