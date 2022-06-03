@@ -5,8 +5,10 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mall.dao.mapper.UniappCommoditiesMapper;
 import com.mall.entity.entity.resp.ResponseResult;
+import com.mall.entity.entity.shop.ShopUniappPicture;
 import com.mall.entity.entity.shop.UniappComment;
 import com.mall.entity.entity.shop.UniappCommodities;
+import com.mall.entity.entity.shop.UniappQuestion;
 import com.mall.service.service.UniappCommoditiesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -71,6 +73,29 @@ public class UniappCommoditiesServiceImpl implements UniappCommoditiesService {
     public List<UniappComment> getCommentByCommodityId(Integer id) {
         List<UniappComment> uniappComments = uniappCommoditiesMapper.selectCommentDetailByCommodityId(id);
         return uniappComments;
+    }
+
+    /**
+     * 根据商品id 获取对应商品图片
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public List<String> getCommodityPictureById(Integer id) {
+        return uniappCommoditiesMapper.selectCommodityPicture(id);
+    }
+
+    /**
+     * 根据商品id 获取用户询问信息
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public List<UniappQuestion> getUserAskById(Integer id) {
+        List<UniappQuestion> uniappQuestions = uniappCommoditiesMapper.selectUserAskById(id);
+        return uniappQuestions;
     }
 
 }

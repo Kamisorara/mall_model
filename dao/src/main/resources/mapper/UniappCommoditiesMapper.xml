@@ -21,4 +21,20 @@
                  LEFT JOIN shop_uniapp_commodities uc ON suc.commodity_id = uc.id
         WHERE uc.id = #{id};
     </select>
+
+    <!--    根据商品id 获取商品相关摘片-->
+    <select id="selectCommodityPicture" resultType="java.lang.String">
+        SELECT sup.picture
+        FROM shop_uniapp_picture sup
+                 LEFT JOIN shop_uniapp_commodities suc ON sup.shop_id = suc.id
+        WHERE suc.id = #{id};
+    </select>
+
+    <!--根据商品id 获取用户询问信息-->
+    <select id="selectUserAskById" resultType="com.mall.entity.entity.shop.UniappQuestion">
+        SELECT *
+        FROM `shop_uniapp_question` suq
+                 LEFT JOIN shop_uniapp_commodities suc ON suq.shop_id = suc.id
+        WHERE suc.id = #{id};
+    </select>
 </mapper>

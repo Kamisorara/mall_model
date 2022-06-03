@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import com.baomidou.mybatisplus.annotation.TableName;
+
 /**
  * (UniappQuestion)表实体类
  *
@@ -14,7 +15,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName(value= "shop_uniapp_question")
+@TableName(value = "shop_uniapp_question")
 public class UniappQuestion {
     //评论id
     private Long id;
@@ -24,6 +25,8 @@ public class UniappQuestion {
     private Long userId;
     //用户问题
     private String userAsk;
+    //用户评论对应商品id
+    private Long shopId;
 
 }
 
