@@ -2,14 +2,13 @@ package com.mall.web.controller.shop;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.mall.entity.entity.resp.ResponseResult;
+import com.mall.entity.entity.shop.ClassificationDetail;
 import com.mall.entity.entity.shop.UniappCommodities;
-import com.mall.service.service.SwiperService;
-import com.mall.service.service.UniappClassificationService;
-import com.mall.service.service.UniappCommoditiesService;
-import com.mall.service.service.UniappRecommendedService;
+import com.mall.service.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -21,7 +20,7 @@ import java.util.List;
 @RequestMapping("/uni-shop/index")
 public class uniappIndexController {
     @Autowired
-    UniappClassificationService classificationService;
+    UniappClassificationService uniappClassificationService;
 
     @Autowired
     UniappRecommendedService recommendedService;
@@ -30,12 +29,15 @@ public class uniappIndexController {
     UniappCommoditiesService commoditiesService;
 
     @Autowired
+    ClassificationService classificationService;
+
+    @Autowired
     SwiperService swiperService;
 
     //获取首页分类信息
     @RequestMapping(value = "/get-index-classify", method = RequestMethod.GET)
     public ResponseResult getIndexClassification() {
-        return classificationService.selectAll();
+        return uniappClassificationService.selectAll();
     }
 
     //获取推荐商品详情
@@ -62,5 +64,13 @@ public class uniappIndexController {
     @RequestMapping(value = "/getSwiperPicture", method = RequestMethod.GET)
     public ResponseResult getSwiperPicture() {
         return swiperService.selectAll();
+    }
+
+
+    //uniapp获取商品分类后的详情分列表
+    @RequestMapping(value = "/getClassificationDetail", method = RequestMethod.GET)
+    public ResponseResult getCategory(@RequestParam("id") Integer id) {
+        List<ClassificationDetail> classificationDetails = classificationService.selectCategory(id);
+        return new ResponseResult(200, "商品详情列表获取成功！", classificationDetails);
     }
 }

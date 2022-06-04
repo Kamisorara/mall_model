@@ -33,12 +33,10 @@ public class LoginServiceImpl implements LoginService {
         //AuthenticationManager的authenticate方法来进行用户认证
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user.getUserName(), user.getPassword());
         Authentication authenticate = authenticationManager.authenticate(authenticationToken);//如果认证通过这个结果就不为null
-
         //如果认证不通过给出对应提示
         if (Objects.isNull(authenticate)) {
             throw new RuntimeException("登录失败");
         }
-
         //如果认证通过使用userid生成jwt  存入ResponseBody进行返回
         LoginUser loginUser = (LoginUser) authenticate.getPrincipal(); //强转成LoginUser对象
         String userid = loginUser.getUser().getId().toString();

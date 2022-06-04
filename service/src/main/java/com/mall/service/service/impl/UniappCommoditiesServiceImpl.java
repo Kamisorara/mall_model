@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mall.dao.mapper.UniappCommoditiesMapper;
 import com.mall.entity.entity.resp.ResponseResult;
-import com.mall.entity.entity.shop.ShopUniappPicture;
 import com.mall.entity.entity.shop.UniappComment;
 import com.mall.entity.entity.shop.UniappCommodities;
 import com.mall.entity.entity.shop.UniappQuestion;

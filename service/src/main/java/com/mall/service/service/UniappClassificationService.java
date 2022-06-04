@@ -5,4 +5,5 @@ import com.mall.entity.entity.resp.ResponseResult;
 public interface UniappClassificationService {
 
     ResponseResult selectAll();
+
 }
