@@ -22,4 +22,10 @@ public interface UniappCommoditiesMapper extends BaseMapper<UniappCommodities> {
 
     //根据商品id 获取用户询问信息
     List<UniappQuestion> selectUserAskById(Integer id);
+
+    //根据商品id 获取商品对应库存信息
+    List<CommodityInventory> selectInventoryById(Integer id);
+
+    //根据商品类型搜索对应商品
+    List<UniappCommodities> selectCommodityByType(String type);
 }

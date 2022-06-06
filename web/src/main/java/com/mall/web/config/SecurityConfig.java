@@ -56,7 +56,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/shop/index/classification",
                         "/shop/index/notice-board",
                         "/user/verify-code",
-                        "/uni-shop/index/**").permitAll()
+                        "/uni-shop/index/**",
+                        "/uniapp-detail/get-commodity-type").permitAll()
                 //除了上面的接口都要进行权限认证
                 .anyRequest().authenticated();
         //把token校验过滤器添加到过滤器链中 （添加过滤器）

@@ -37,4 +37,19 @@
                  LEFT JOIN shop_uniapp_commodities suc ON suq.shop_id = suc.id
         WHERE suc.id = #{id};
     </select>
+
+    <!--    根据商品id 获取商品对应库存信息-->
+    <select id="selectInventoryById" resultType="com.mall.entity.entity.shop.CommodityInventory">
+        SELECT *
+        FROM shop_commodity_inventory sci
+                 LEFT JOIN shop_uniapp_commodities suc ON sci.commodity_id = suc.id
+        WHERE suc.id = #{id};
+    </select>
+
+    <!--    根据商品类型搜索对应商品(注意模糊查询的用法，这样也可以防止sql注入)-->
+    <select id="selectCommodityByType" resultType="com.mall.entity.entity.shop.UniappCommodities">
+        SELECT *
+        FROM `shop_uniapp_commodities` suc
+        WHERE suc.type like concat('%', '${type}', '%');
+    </select>
 </mapper>

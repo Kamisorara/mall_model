@@ -4,5 +4,10 @@
       "name": "pagehelper.reasonable",
       "type": "java.lang.String",
       "description": "Description for pagehelper.reasonable."
-  }
-] }
+    },
+    {
+      "name": "mybatis-plus.global-config.db-config",
+      "type": "java.lang.String",
+      "description": "Description for mybatis-plus.global-config.db-config."
+    }
+  ] }

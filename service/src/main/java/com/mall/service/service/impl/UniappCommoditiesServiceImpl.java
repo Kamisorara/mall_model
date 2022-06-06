@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mall.dao.mapper.UniappCommoditiesMapper;
 import com.mall.entity.entity.resp.ResponseResult;
+import com.mall.entity.entity.shop.CommodityInventory;
 import com.mall.entity.entity.shop.UniappComment;
 import com.mall.entity.entity.shop.UniappCommodities;
 import com.mall.entity.entity.shop.UniappQuestion;
@@ -12,6 +13,7 @@ import com.mall.service.service.UniappCommoditiesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -28,6 +30,8 @@ public class UniappCommoditiesServiceImpl implements UniappCommoditiesService {
     @Override
     public ResponseResult selectAllCommodities() {
         List<UniappCommodities> uniappCommodities = uniappCommoditiesMapper.selectAll();
+        //随机打算商品顺序
+        Collections.shuffle(uniappCommodities);
         return new ResponseResult(200, "商品信息获取成功", uniappCommodities);
     }
 
@@ -95,6 +99,33 @@ public class UniappCommoditiesServiceImpl implements UniappCommoditiesService {
     public List<UniappQuestion> getUserAskById(Integer id) {
         List<UniappQuestion> uniappQuestions = uniappCommoditiesMapper.selectUserAskById(id);
         return uniappQuestions;
+    }
+
+
+    /**
+     * 根据商品id获取对应库存信息
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public List<CommodityInventory> getCommodityInventoryById(Integer id) {
+        List<CommodityInventory> commodityInventories = uniappCommoditiesMapper.selectInventoryById(id);
+        return commodityInventories;
+    }
+
+    /**
+     * 根据商品type获取商品信息
+     *
+     * @param type
+     * @return
+     */
+    @Override
+    public List<UniappCommodities> getCommodityByType(String type) {
+        List<UniappCommodities> commodities = uniappCommoditiesMapper.selectCommodityByType(type);
+        //随机打乱顺序
+        Collections.shuffle(commodities);
+        return commodities;
     }
 
 }

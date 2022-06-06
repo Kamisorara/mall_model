@@ -1,7 +1,9 @@
 package com.mall.web.controller.system;
 
 
+import com.mall.dao.mapper.AddrMapper;
 import com.mall.dao.mapper.UserMapper;
+import com.mall.entity.entity.Addr;
 import com.mall.entity.entity.User;
 import com.mall.entity.entity.UserDetail;
 import com.mall.entity.entity.resp.ResponseResult;
@@ -35,6 +37,9 @@ public class userController {
     private VerifyService verifyService;
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private AddrMapper addrMapper;
     @Autowired
     private UpdateUserDetailService updateUserDetailService;
 
@@ -64,6 +69,8 @@ public class userController {
         Map<String, Object> map = new HashMap<>();
         try {
             if (verifyService.doVerify(email, verify) && password.equals(passwordRepeat)) {
+                Addr addr = new Addr();
+                addr.setAddr("（这是默认地址，请更改！）");
                 User user = new User();
                 user.setUserName(username);
                 //这里需要加密存储 ,后面封装到service里面
@@ -71,6 +78,9 @@ public class userController {
                 String encode = encoder.encode(password);
                 user.setPassword(encode);
                 userMapper.insert(user);
+                Long userIdInDataBase = userMapper.selectUserIdByUserName(username);
+                addr.setUserId(userIdInDataBase);
+                addrMapper.insert(addr);
                 map.put("Info", email + "用户" + "注册成功！");
                 return new ResponseResult(200, "注册成功!", map);
             } else {

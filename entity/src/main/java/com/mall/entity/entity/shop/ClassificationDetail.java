@@ -1,5 +1,7 @@
 package com.mall.entity.entity.shop;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +20,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 @TableName(value = "shop_classification_detail")
 public class ClassificationDetail {
     //商品分类再分类对应详情id
+    @TableId
     private Long id;
     //商品分类再分类对应名称
     private String name;

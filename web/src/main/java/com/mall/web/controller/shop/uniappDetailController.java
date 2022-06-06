@@ -1,10 +1,7 @@
 package com.mall.web.controller.shop;
 
 import com.mall.entity.entity.resp.ResponseResult;
-import com.mall.entity.entity.shop.ShopUniappPicture;
-import com.mall.entity.entity.shop.UniappComment;
-import com.mall.entity.entity.shop.UniappCommodities;
-import com.mall.entity.entity.shop.UniappQuestion;
+import com.mall.entity.entity.shop.*;
 import com.mall.service.service.UniappCommoditiesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,13 +42,25 @@ public class uniappDetailController {
         return new ResponseResult(200, "获取商品图片成功！", commodityPicture);
     }
 
-
     //根据商品id 获取用户询问信息
     @RequestMapping("/get-commodity-userAsk")
     public ResponseResult getUserAsk(@RequestParam("id") Integer id) {
         List<UniappQuestion> userAsk = commoditiesService.getUserAskById(id);
         return new ResponseResult(200, "获取用户询问成功!", userAsk);
+    }
 
+    //根据商品id获取对应库存信息
+    @RequestMapping("/get-commodity-inventory")
+    public ResponseResult getInventory(@RequestParam("id") Integer id) {
+        List<CommodityInventory> commodityInventory = commoditiesService.getCommodityInventoryById(id);
+        return new ResponseResult(200, "获取对应商品库存信息成功!", commodityInventory);
+    }
+
+    //根据商品type获取商品信息
+    @RequestMapping("/get-commodity-type")
+    public ResponseResult getCommodityType(@RequestParam("type") String type) {
+        List<UniappCommodities> commodityType = commoditiesService.getCommodityByType(type);
+        return new ResponseResult(200, "通过type获取对应商品成功!", commodityType);
     }
 
 }

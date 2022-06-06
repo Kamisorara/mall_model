@@ -2,10 +2,7 @@ package com.mall.service.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.mall.entity.entity.resp.ResponseResult;
-import com.mall.entity.entity.shop.ShopUniappPicture;
-import com.mall.entity.entity.shop.UniappComment;
-import com.mall.entity.entity.shop.UniappCommodities;
-import com.mall.entity.entity.shop.UniappQuestion;
+import com.mall.entity.entity.shop.*;
 
 import java.util.List;
 
@@ -28,4 +25,10 @@ public interface UniappCommoditiesService {
 
     //根据商品id 获取用户询问信息
     List<UniappQuestion> getUserAskById(Integer id);
+
+    //根据商品id 获取商品对应库存信息
+    List<CommodityInventory> getCommodityInventoryById(Integer id);
+
+    //根据商品type 获取商品信息
+    List<UniappCommodities> getCommodityByType(String type);
 }

@@ -1,5 +1,7 @@
 package com.mall.entity.entity.shop;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +20,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 @TableName(value = "shop_uniapp_picture")
 public class ShopUniappPicture {
     //商品轮播图id
+    @TableId
     private Long id;
     //商品轮播图地址
     private String picture;
