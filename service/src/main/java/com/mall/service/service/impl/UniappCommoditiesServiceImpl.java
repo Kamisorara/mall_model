@@ -52,7 +52,6 @@ public class UniappCommoditiesServiceImpl implements UniappCommoditiesService {
         page.setSize(pageSize);
         //获取
         return uniappCommoditiesMapper.selectPage(page, null);
-
     }
 
     /**
@@ -126,6 +125,37 @@ public class UniappCommoditiesServiceImpl implements UniappCommoditiesService {
         //随机打乱顺序
         Collections.shuffle(commodities);
         return commodities;
+    }
+
+    /**
+     * 根据商品type获取商品信息
+     *
+     * @param type
+     * @return
+     */
+    @Override
+    public List<UniappCommodities> getCommodityByTypeLimitedTen(String type) {
+        List<UniappCommodities> commodities = uniappCommoditiesMapper.selectCommodityByTypeLimitedTen(type);
+        //随机打乱顺序
+        Collections.shuffle(commodities);
+        return commodities;
+    }
+
+    /**
+     * 根据商品type分页获取商品列表
+     *
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @Override
+    public IPage<UniappCommodities> getCommodityByTypePages(String type, int pageNum, int pageSize) {
+        Page<UniappCommodities> page = new Page<>();
+        //当前页数
+        page.setCurrent(pageNum);
+        //设置每页多少
+        page.setSize(pageSize);
+        return uniappCommoditiesMapper.getCommodityByTypePage(type, page);
     }
 
 }

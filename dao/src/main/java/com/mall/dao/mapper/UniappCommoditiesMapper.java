@@ -1,6 +1,8 @@
 package com.mall.dao.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mall.entity.entity.shop.*;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -28,4 +30,12 @@ public interface UniappCommoditiesMapper extends BaseMapper<UniappCommodities> {
 
     //根据商品类型搜索对应商品
     List<UniappCommodities> selectCommodityByType(String type);
+
+    //根据商品类搜索对应商品 数量显示10（在首页获取）
+    List<UniappCommodities> selectCommodityByTypeLimitedTen(String type);
+
+    //根据商品type分页获取商品列表
+    IPage<UniappCommodities> getCommodityByTypePage(String type, Page<UniappCommodities> page);
+
+
 }

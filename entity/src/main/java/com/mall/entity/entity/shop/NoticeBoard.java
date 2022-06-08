@@ -16,4 +16,6 @@ public class NoticeBoard {
     private Long id;
 
     private String notice;
+
+    private String url;
 }

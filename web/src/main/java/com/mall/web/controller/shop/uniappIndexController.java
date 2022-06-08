@@ -73,4 +73,21 @@ public class uniappIndexController {
         List<ClassificationDetail> classificationDetails = classificationService.selectCategory(id);
         return new ResponseResult(200, "商品详情列表获取成功！", classificationDetails);
     }
+
+    //根据商品type获取商品信息（数量限制10）
+    @RequestMapping(value = "/get-commodity-type-limited", method = RequestMethod.GET)
+    public ResponseResult getCommodityByTypeLimited(@RequestParam("type") String type) {
+        List<UniappCommodities> commodityByTypeLimitedTen = commoditiesService.getCommodityByTypeLimitedTen(type);
+        return new ResponseResult(200, "根据商品type获取商品成功，数显限制10", commodityByTypeLimitedTen);
+    }
+
+    //根据商品type -分页获取商品列表
+    @RequestMapping(value = "/get-commodity-type-pages", method = RequestMethod.GET)
+    public ResponseResult getCommodityTypePage(@RequestParam("type") String type,
+                                               @RequestParam("pageNum") int pageNum,
+                                               @RequestParam("pageSize") int pageSize) {
+        IPage<UniappCommodities> commodityByTypePages = commoditiesService.getCommodityByTypePages(type, pageNum, pageSize);
+        return new ResponseResult(200, "根据商品type分页获取商品列表成功！", commodityByTypePages);
+    }
+
 }

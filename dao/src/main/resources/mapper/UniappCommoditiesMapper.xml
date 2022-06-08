@@ -52,4 +52,19 @@
         FROM `shop_uniapp_commodities` suc
         WHERE suc.type like concat('%', '${type}', '%');
     </select>
+    <!--    根据商品类型搜索对应商品(数量限制10)(注意模糊查询的用法，这样也可以防止sql注入)-->
+    <select id="selectCommodityByTypeLimitedTen" resultType="com.mall.entity.entity.shop.UniappCommodities">
+        SELECT *
+        FROM `shop_uniapp_commodities` suc
+        WHERE suc.type like concat('%', '${type}', '%')
+        limit 10;
+    </select>
+    <!--    根据商品type分页获取商品列表 最后mybatisPlus要拼接limit 所以最后不要加引号-->
+    <select id="getCommodityByTypePage" resultType="com.mall.entity.entity.shop.UniappCommodities">
+        SELECT *
+        FROM `shop_uniapp_commodities` suc
+        WHERE suc.type like concat('%', '${type}', '%')
+    </select>
+
+
 </mapper>
