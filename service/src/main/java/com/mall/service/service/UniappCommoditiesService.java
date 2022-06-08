@@ -14,7 +14,6 @@ public interface UniappCommoditiesService {
     //分页获取商品列表
     IPage<UniappCommodities> getPageList(int pageNum, int pageSize);
 
-
     //根据id获取商品详情
     UniappCommodities getCommodityDetail(Integer id);
 
@@ -38,4 +37,5 @@ public interface UniappCommoditiesService {
 
     //根据商品type分页获取商品详情
     IPage<UniappCommodities> getCommodityByTypePages(String type, int pageNum, int pageSize);
+
 }

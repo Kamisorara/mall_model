@@ -2,6 +2,8 @@ package com.mall.entity.entity.shop;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +23,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 public class ShopUniappPicture {
     //商品轮播图id
     @TableId
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
     //商品轮播图地址
     private String picture;

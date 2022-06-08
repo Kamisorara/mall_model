@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mall.entity.entity.shop.*;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -34,8 +35,6 @@ public interface UniappCommoditiesMapper extends BaseMapper<UniappCommodities> {
     //根据商品类搜索对应商品 数量显示10（在首页获取）
     List<UniappCommodities> selectCommodityByTypeLimitedTen(String type);
 
-    //根据商品type分页获取商品列表
-    IPage<UniappCommodities> getCommodityByTypePage(String type, Page<UniappCommodities> page);
 
 
 }

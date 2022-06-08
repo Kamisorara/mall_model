@@ -2,6 +2,8 @@ package com.mall.entity.entity.shop;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +23,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 public class UniappCommodities {
     //uniapp首页商品id
     @TableId
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
     //标签（官方或非官方）
     private String label;

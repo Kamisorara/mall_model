@@ -1,6 +1,7 @@
 package com.mall.service.service.impl;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mall.dao.mapper.UniappCommoditiesMapper;
@@ -150,12 +151,14 @@ public class UniappCommoditiesServiceImpl implements UniappCommoditiesService {
      */
     @Override
     public IPage<UniappCommodities> getCommodityByTypePages(String type, int pageNum, int pageSize) {
+        QueryWrapper<UniappCommodities> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("type", type);
         Page<UniappCommodities> page = new Page<>();
         //当前页数
         page.setCurrent(pageNum);
         //设置每页多少
         page.setSize(pageSize);
-        return uniappCommoditiesMapper.getCommodityByTypePage(type, page);
+        return uniappCommoditiesMapper.selectPage(page, queryWrapper);
     }
 
 }
