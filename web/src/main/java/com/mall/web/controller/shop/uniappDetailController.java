@@ -2,12 +2,10 @@ package com.mall.web.controller.shop;
 
 import com.mall.entity.entity.resp.ResponseResult;
 import com.mall.entity.entity.shop.*;
+import com.mall.service.service.CartService;
 import com.mall.service.service.UniappCommoditiesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +19,9 @@ public class uniappDetailController {
 
     @Autowired
     UniappCommoditiesService commoditiesService;
+
+    @Autowired
+    CartService cartService;
 
     //根据商品id获取商品基本详情
     @RequestMapping("/get-commodities-detail")
@@ -64,7 +65,16 @@ public class uniappDetailController {
         return new ResponseResult(200, "通过type获取对应商品成功!", commodityType);
     }
 
-
-
+    //用户插入购物车
+    @RequestMapping(value = "/post-commodityToCart", method = RequestMethod.POST)
+    public ResponseResult insertCommodityToCart(@RequestParam("userId") Long userId,
+                                                @RequestParam("commodityId") Long commodityId) {
+        boolean success = cartService.insertCommodityToCart(userId, commodityId);
+        if (success) {
+            return new ResponseResult(200, "添加购物车成功");
+        } else {
+            return new ResponseResult(400, "添加购物车失败！");
+        }
+    }
 }
 

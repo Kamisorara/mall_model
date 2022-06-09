@@ -161,4 +161,16 @@ public class UniappCommoditiesServiceImpl implements UniappCommoditiesService {
         return uniappCommoditiesMapper.selectPage(page, queryWrapper);
     }
 
+    /**
+     * 后台系统操作-插入商品
+     *
+     * @param commodities
+     * @return
+     */
+    @Override
+    public boolean insertCommodity(UniappCommodities commodities) {
+        int insert = uniappCommoditiesMapper.insert(commodities);
+        return insert > 0;
+    }
+
 }

@@ -1,11 +1,11 @@
 package com.mall.dao.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.mall.entity.entity.shop.*;
+import com.mall.entity.entity.shop.CommodityInventory;
+import com.mall.entity.entity.shop.UniappComment;
+import com.mall.entity.entity.shop.UniappCommodities;
+import com.mall.entity.entity.shop.UniappQuestion;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 

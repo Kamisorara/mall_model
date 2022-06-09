@@ -38,4 +38,6 @@ public interface UniappCommoditiesService {
     //根据商品type分页获取商品详情
     IPage<UniappCommodities> getCommodityByTypePages(String type, int pageNum, int pageSize);
 
+    //添加商品
+    boolean insertCommodity(UniappCommodities commodities);
 }
