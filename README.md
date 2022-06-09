@@ -6,3 +6,4 @@ mall后端多模块项目，适用于vue_shop单页面商城项目
 
 #pc前端链接：https://github.com/Kamisorara/shop
 #移动端链接:https://github.com/Kamisorara/uniapp_shop
+#商城后台管理系统链接：https://github.com/Kamisorara/MallBackStage
