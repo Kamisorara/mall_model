@@ -1,7 +1,6 @@
 package com.mall.service.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-
 import com.mall.dao.mapper.MenuMapper;
 import com.mall.dao.mapper.UserMapper;
 import com.mall.entity.entity.LoginUser;
@@ -27,18 +26,18 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        //根据用户名查询用户信息
+        //查询用户信息
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(User::getUserName, username);
+        queryWrapper.eq(User::getUserName,username);
         User user = userMapper.selectOne(queryWrapper);
-        //如果查询不到数据就通过抛出异常来给出提示
-        if (Objects.isNull(user)) {
-            throw new RuntimeException("用户名密码错误");
+        //如果没有查询到用户就抛出异常
+        if(Objects.isNull(user)){
+            throw new RuntimeException("用户名或者密码错误");
         }
         //因为UserDetailsService方法的返回值是UserDetails类型，所以需要定义一个类，实现该接口，把用户信息封装在其中。
         //TODO 根据用户查询权限信息 添加到LoginUser中
-//        List<String> permsList = menuMapper.selectPermsByUserId(user.getId());
-        List<String> permsList = new ArrayList<>(Arrays.asList("test", "admin"));
+        List<String> permsList = menuMapper.selectPermsByUserId(user.getId());
+//        List<String> permsList = new ArrayList<>(Arrays.asList("test", "admin"));
         //把数据封装成UserDetails类型返回
         return new LoginUser(user, permsList);
     }

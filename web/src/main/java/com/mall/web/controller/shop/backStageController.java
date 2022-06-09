@@ -4,6 +4,7 @@ import com.mall.entity.entity.resp.ResponseResult;
 import com.mall.entity.entity.shop.UniappCommodities;
 import com.mall.service.service.UniappCommoditiesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +23,7 @@ public class backStageController {
 
     //插入商品
     @RequestMapping(value = "/insertCommodity", method = RequestMethod.POST)
+    @PreAuthorize("@ex.hasAuthority('sys:shop:add')")
     public ResponseResult insertCommodity(@RequestBody UniappCommodities commodities) {
         boolean success = commoditiesService.insertCommodity(commodities);
         if (success) {

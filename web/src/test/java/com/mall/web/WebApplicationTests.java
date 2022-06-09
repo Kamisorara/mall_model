@@ -2,6 +2,7 @@ package com.mall.web;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.mall.dao.mapper.MenuMapper;
 import com.mall.dao.mapper.SellerMapper;
 import com.mall.dao.mapper.UniappCommoditiesMapper;
 import com.mall.entity.entity.UserDetail;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.sql.Date;
+import java.util.List;
 
 @SpringBootTest
 class WebApplicationTests {
@@ -26,6 +28,9 @@ class WebApplicationTests {
 
     @Autowired
     UniappCommoditiesMapper uniappCommoditiesMapper;
+
+    @Autowired
+    MenuMapper menuMapper;
 
     @Test
     void testMapper() {
@@ -53,5 +58,12 @@ class WebApplicationTests {
         page.setSize(2);
         //获取
         IPage<UniappCommodities> page1 = uniappCommoditiesMapper.selectPage(page, null);
+    }
+
+
+    @Test
+    void testManu() {
+        List<String> list = menuMapper.selectPermsByUserId(1L);
+        System.out.println(list);
     }
 }
