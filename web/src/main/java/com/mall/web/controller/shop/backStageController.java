@@ -2,13 +2,12 @@ package com.mall.web.controller.shop;
 
 import com.mall.entity.entity.resp.ResponseResult;
 import com.mall.entity.entity.shop.UniappCommodities;
+import com.mall.service.service.Oss.OssUploadService;
 import com.mall.service.service.UniappCommoditiesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 
 /**
@@ -21,6 +20,9 @@ public class backStageController {
     @Autowired
     UniappCommoditiesService commoditiesService;
 
+    @Autowired
+    OssUploadService ossUploadService;
+
     //插入商品
     @RequestMapping(value = "/insertCommodity", method = RequestMethod.POST)
     @PreAuthorize("@ex.hasAuthority('sys:shop:add')")
@@ -32,4 +34,13 @@ public class backStageController {
             return new ResponseResult(400, "添加商品失败");
         }
     }
+
+    //上传文件
+    @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
+    @PreAuthorize("@ex.hasAuthority('sys:shop:add')")
+    public ResponseResult upLoadFile(@RequestParam("file") MultipartFile multipartFile) {
+        String url = ossUploadService.uploadFile(multipartFile);
+        return new ResponseResult(200, "文件上传成功", url);
+    }
+
 }
