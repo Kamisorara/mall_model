@@ -20,12 +20,10 @@ import java.sql.Date;
 @NoArgsConstructor
 @Accessors(chain = true)//允许链式调用
 public class UserDetail {
-    @TableId
     private Long id;
     /**
      * 用户名
      */
-    @JsonSerialize(using = ToStringSerializer.class)
     private String userName;
     /**
      * 昵称

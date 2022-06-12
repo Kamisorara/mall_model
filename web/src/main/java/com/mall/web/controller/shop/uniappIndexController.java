@@ -34,6 +34,7 @@ public class uniappIndexController {
     @Autowired
     SwiperService swiperService;
 
+
     //获取首页分类信息
     @RequestMapping(value = "/get-index-classify", method = RequestMethod.GET)
     public ResponseResult getIndexClassification() {
@@ -89,5 +90,7 @@ public class uniappIndexController {
         IPage<UniappCommodities> commodityByTypePages = commoditiesService.getCommodityByTypePages(type, pageNum, pageSize);
         return new ResponseResult(200, "根据商品type分页获取商品列表成功！", commodityByTypePages);
     }
+
+
 
 }

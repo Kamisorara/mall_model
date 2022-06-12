@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mall.dao.mapper.HeadMapper">
+
+
+    <!--    把用户头像全都变成status 1（不启用）的状态-->
+    <update id="updateUserHeadStatus">
+        UPDATE sys_head sh
+            LEFT JOIN sys_user su ON su.id = sh.user_id
+        SET sh.status = 1
+        WHERE su.id = #{id};
+    </update>
+
+    <!--    根据用户id获取用户头像-->
+    <select id="getUserHeadById" resultType="java.lang.String">
+        SELECT user_head
+        FROM `sys_head` sh
+                 LEFT JOIN sys_user su ON sh.user_id = su.id
+        WHERE su.id = #{id}
+          AND sh.`status` = 0;
+    </select>
+</mapper>

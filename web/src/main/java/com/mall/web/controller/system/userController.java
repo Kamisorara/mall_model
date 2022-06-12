@@ -2,8 +2,10 @@ package com.mall.web.controller.system;
 
 
 import com.mall.dao.mapper.AddrMapper;
+import com.mall.dao.mapper.HeadMapper;
 import com.mall.dao.mapper.UserMapper;
 import com.mall.entity.entity.Addr;
+import com.mall.entity.entity.Head;
 import com.mall.entity.entity.User;
 import com.mall.entity.entity.UserDetail;
 import com.mall.entity.entity.resp.ResponseResult;
@@ -37,11 +39,12 @@ public class userController {
     private VerifyService verifyService;
     @Autowired
     private UserMapper userMapper;
-
     @Autowired
     private AddrMapper addrMapper;
     @Autowired
     private UpdateUserDetailService updateUserDetailService;
+    @Autowired
+    HeadMapper headMapper;
 
     /**
      * 登录接口
@@ -169,5 +172,18 @@ public class userController {
         list.add(userId);
         list.add(userName);
         return new ResponseResult(200, "用户登录状态获取成功", list);
+    }
+
+    /**
+     * 根据用户id获取用户头像
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping("/get-user-head")
+    public ResponseResult getUserHead(@RequestParam("id") Long id) {
+        String userHead = userInfoService.getUserHead(id);
+
+        return new ResponseResult(200, "获取用户头像成功!", userHead);
     }
 }
