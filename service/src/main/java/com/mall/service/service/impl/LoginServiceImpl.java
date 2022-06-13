@@ -1,6 +1,7 @@
 package com.mall.service.service.impl;
 
 
+import com.mall.dao.mapper.UserMapper;
 import com.mall.entity.entity.LoginUser;
 import com.mall.entity.entity.User;
 import com.mall.entity.entity.resp.ResponseResult;
@@ -25,6 +26,9 @@ public class LoginServiceImpl implements LoginService {
     private AuthenticationManager authenticationManager;
 
     @Autowired
+    private UserMapper userMapper;
+
+    @Autowired
     private RedisCache redisCache;
 
     //登录
@@ -37,17 +41,23 @@ public class LoginServiceImpl implements LoginService {
         if (Objects.isNull(authenticate)) {
             throw new RuntimeException("登录失败");
         }
-        //如果认证通过使用userid生成jwt  存入ResponseBody进行返回
-        LoginUser loginUser = (LoginUser) authenticate.getPrincipal(); //强转成LoginUser对象
-        String userid = loginUser.getUser().getId().toString();
-        //生成jwt
-        String jwt = JwtUtil.createJWT(userid);
-
-        Map<String, String> map = new HashMap<>();
-        map.put("token", jwt);
-        //把完整的用户信息存入redis
-        redisCache.setCacheObject("login:" + userid, loginUser);
-        return new ResponseResult(200, "登录成功", map);
+        //如果用户的status是处于被封禁状态则登录失败
+        Long userId = userMapper.selectUserIdByUserName(user.getUserName());
+        String userStatus = userMapper.getUserStatus(userId);
+        if (userStatus.equals("1")) {
+            return new ResponseResult(400, "该账户已被管理员封禁，请联系管理员已获取详细信息！");
+        } else {
+            //如果认证通过使用userid生成jwt  存入ResponseBody进行返回
+            LoginUser loginUser = (LoginUser) authenticate.getPrincipal(); //强转成LoginUser对象
+            String userid = loginUser.getUser().getId().toString();
+            //生成jwt
+            String jwt = JwtUtil.createJWT(userid);
+            Map<String, String> map = new HashMap<>();
+            map.put("token", jwt);
+            //把完整的用户信息存入redis
+            redisCache.setCacheObject("login:" + userid, loginUser);
+            return new ResponseResult(200, "登录成功", map);
+        }
     }
 
     //退出

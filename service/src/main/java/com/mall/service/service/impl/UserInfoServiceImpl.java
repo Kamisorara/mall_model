@@ -9,6 +9,8 @@ import com.mall.service.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 用户详情service
  */
@@ -39,5 +41,32 @@ public class UserInfoServiceImpl implements UserInfoService {
     public String getUserHead(Long id) {
         return headMapper.getUserHeadById(id);
     }
+
+
+    /**
+     * 获取用户列表
+     *
+     * @return
+     */
+    @Override
+    public List<User> getUserList() {
+        List<User> userList = userMapper.getUserList();
+        return userList;
+    }
+
+
+    /**
+     * 更新用户状态
+     *
+     * @param id
+     * @param status
+     * @return
+     */
+    @Override
+    public boolean updateUserStatus(Long id, String status) {
+        int i = userMapper.updateUserStatus(id, status);
+        return i > 0;
+    }
+
 
 }
