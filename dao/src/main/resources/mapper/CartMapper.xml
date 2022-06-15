@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mall.dao.mapper.CartMapper">
+    <!--    根据用户id搜索他的购物车-->
+    <select id="selectUserCart" resultType="com.mall.entity.entity.resp.userCart">
+        SELECT *
+        FROM `shop_cart` sc
+                 LEFT JOIN shop_commodity_inventory sci ON sc.inventory_id = sci.id
+        WHERE sc.user_id = #{id};
+    </select>
 </mapper>

@@ -1,6 +1,7 @@
 package com.mall.web.controller.shop;
 
 import com.mall.entity.entity.resp.ResponseResult;
+import com.mall.entity.entity.resp.userCart;
 import com.mall.entity.entity.shop.*;
 import com.mall.service.service.CartService;
 import com.mall.service.service.UniappCommoditiesService;
@@ -68,13 +69,20 @@ public class uniappDetailController {
     //用户插入购物车
     @RequestMapping(value = "/post-commodityToCart", method = RequestMethod.POST)
     public ResponseResult insertCommodityToCart(@RequestParam("userId") Long userId,
-                                                @RequestParam("commodityId") Long commodityId) {
-        boolean success = cartService.insertCommodityToCart(userId, commodityId);
+                                                @RequestParam("inventoryId") Long inventoryId) {
+        boolean success = cartService.insertCommodityToCart(userId, inventoryId);
         if (success) {
             return new ResponseResult(200, "添加购物车成功");
         } else {
             return new ResponseResult(400, "添加购物车失败！");
         }
+    }
+
+    //用户查询购物车
+    @RequestMapping(value = "/get-user-cart")
+    public ResponseResult getUserCart(@RequestParam("userId") Long id) {
+        List<userCart> userCart = cartService.getUserCart(id);
+        return new ResponseResult(200, "获取用户购物车列表成功！", userCart);
     }
 }
 

@@ -91,6 +91,4 @@ public class uniappIndexController {
         return new ResponseResult(200, "根据商品type分页获取商品列表成功！", commodityByTypePages);
     }
 
-
-
 }
