@@ -3,7 +3,6 @@ package com.mall.service.service.impl;
 import com.mall.dao.mapper.CartMapper;
 import com.mall.entity.entity.resp.userCart;
 import com.mall.entity.entity.shop.Cart;
-import com.mall.entity.entity.shop.CommodityInventory;
 import com.mall.service.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
