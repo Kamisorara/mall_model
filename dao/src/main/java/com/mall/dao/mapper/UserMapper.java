@@ -2,9 +2,7 @@ package com.mall.dao.mapper;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.mall.entity.entity.Addr;
 import com.mall.entity.entity.User;
-import com.mysql.cj.log.Log;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

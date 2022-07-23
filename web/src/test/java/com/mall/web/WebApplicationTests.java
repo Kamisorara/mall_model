@@ -25,7 +25,6 @@ class WebApplicationTests {
     @Autowired
     UpdateUserDetailService updateUserDetailService;
 
-
     @Autowired
     UniappCommoditiesMapper uniappCommoditiesMapper;
 
@@ -63,7 +62,7 @@ class WebApplicationTests {
 
     @Test
     void testManu() {
-        List<String> list = menuMapper.selectPermsByUserId(1L);
+        List<String> list = menuMapper.selectPermsByUserId(1540718001081896961L);
         System.out.println(list);
     }
 }

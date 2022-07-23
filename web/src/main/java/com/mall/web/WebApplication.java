@@ -7,7 +7,11 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @MapperScan("com.mall.dao.mapper")
-@ComponentScan(basePackages = {"com.mall.dao", "com.mall.entity", "com.mall.service", "com.mall.web"})
+@ComponentScan(basePackages = {
+        "com.mall.dao",
+        "com.mall.entity",
+        "com.mall.service",
+        "com.mall.web"})
 public class WebApplication {
 
     public static void main(String[] args) {

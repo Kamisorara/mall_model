@@ -16,10 +16,8 @@
     <name>mainmall</name>
     <description>Demo project for Spring Boot</description>
     <properties>
-
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
-
     </properties>
     <packaging>pom</packaging>
     <!--声明你有四个儿子 -->

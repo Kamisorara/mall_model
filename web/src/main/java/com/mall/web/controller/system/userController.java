@@ -5,7 +5,6 @@ import com.mall.dao.mapper.AddrMapper;
 import com.mall.dao.mapper.HeadMapper;
 import com.mall.dao.mapper.UserMapper;
 import com.mall.entity.entity.Addr;
-import com.mall.entity.entity.Head;
 import com.mall.entity.entity.User;
 import com.mall.entity.entity.UserDetail;
 import com.mall.entity.entity.resp.ResponseResult;
